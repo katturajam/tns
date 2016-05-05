@@ -53,9 +53,11 @@ var ParseHelper = (function (_super) {
         return parser.toTree(this._content);
     };
     ParseHelper.prototype.doParse = function () {
+        //public static structure: Array<any> = [];
+        var structure = [];
         var dataArray = this.getParseToTree();
         dataArray.forEach(function (object, i) {
-            var structureTop = ParseHelper.structure[ParseHelper.structure.length - 1];
+            var structureTop = structure[structure.length - 1];
             //object.text = object.text.trim();
             switch (object.type) {
                 case "text":
@@ -65,7 +67,7 @@ var ParseHelper = (function (_super) {
                         var span = new span_1.Span();
                         span.text = object.text;
                         structureTop.formattedText.spans.push(span);
-                        ParseHelper.structure[ParseHelper.structure.length - 1] = structureTop;
+                        structure[structure.length - 1] = structureTop;
                     }
                     break;
                 case "newline":
@@ -73,7 +75,7 @@ var ParseHelper = (function (_super) {
                     paragraph.textWrap = true;
                     paragraph.cssClass = "paragraph";
                     paragraph.formattedText = new formatted_string_1.FormattedString();
-                    ParseHelper.structure.push(paragraph);
+                    structure.push(paragraph);
                     break;
                 case "href":
                     if (structureTop instanceof label_1.Label) {
@@ -92,7 +94,7 @@ var ParseHelper = (function (_super) {
                             url: object.text
                         };
                         structureTop.hrefObj.push(urlObj);
-                        ParseHelper.structure[ParseHelper.structure.length - 1] = structureTop;
+                        structure[structure.length - 1] = structureTop;
                     }
                     break;
                 default:
@@ -101,9 +103,8 @@ var ParseHelper = (function (_super) {
             }
         });
         //return structured ui component
-        return ParseHelper.structure;
+        return structure;
     };
-    ParseHelper.structure = [];
     return ParseHelper;
 }(observable.Observable));
 exports.ParseHelper = ParseHelper;

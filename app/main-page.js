@@ -14,7 +14,9 @@ function navigatingTo(args) {
     var stacklayout = new stack_layout_1.StackLayout();
     stacklayout.cssClass = "stackLayout";
     //initialize text parser
-    var TextParser = new text_parse_helper_1.ParseHelper(text);
+    var TextParser = new text_parse_helper_1.ParseHelper();
+    //let TextParser.structure = TextParser.structure[TextParser.structure.length-1];
+    TextParser.loadText(text);
     var viewComponent = TextParser.doParse();
     viewComponent.forEach(function (object, i) {
         if (viewComponent[i] instanceof label_1.Label) {

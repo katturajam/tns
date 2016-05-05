@@ -14,10 +14,12 @@ var topmost = frameModule.topmost;
 export function navigatingTo(args: EventData) {
     let page:Page = <Page> args.object;
     let scrollview:ScrollView= <ScrollView> page.getViewById("sv");
-    let stacklayout:StackLayout = new StackLayout(); 
+    let stacklayout:StackLayout = new StackLayout();
     stacklayout.cssClass = "stackLayout";
     //initialize text parser
-    let TextParser = new ParseHelper(text);
+    let TextParser = new ParseHelper();
+    //let TextParser.structure = TextParser.structure[TextParser.structure.length-1];
+    TextParser.loadText(text); 
     let viewComponent: Array<any> = TextParser.doParse();      
     viewComponent.forEach(function(object,i){
           if(viewComponent[i] instanceof Label) {    

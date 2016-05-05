@@ -9,7 +9,7 @@ var Parser = require("simple-text-parser");
 var parser = new Parser();
 
 export class ParseHelper extends observable.Observable {
-        public static structure: Array<any> = [];
+        //private structure: Array<any> = [];
         private  _content: string;
         private _linkColor: string = '#BB1919';
         constructor(content: string) {
@@ -55,10 +55,12 @@ export class ParseHelper extends observable.Observable {
         }
 
         public doParse() {
+            //public static structure: Array<any> = [];
+            let structure: Array<any> = []
             let dataArray: Array<any> = this.getParseToTree();
            
             dataArray.forEach(function(object, i: number) {       
-                let structureTop = ParseHelper.structure[ParseHelper.structure.length - 1]; 
+                let structureTop = structure[structure.length - 1]; 
                 //object.text = object.text.trim();
                 switch (object.type) {
                     case "text":
@@ -68,7 +70,7 @@ export class ParseHelper extends observable.Observable {
                                 let span = new Span();
                                 span.text = object.text;
                                 (<Label>structureTop).formattedText.spans.push(span);
-                                ParseHelper.structure[ParseHelper.structure.length - 1] = structureTop; 
+                                structure[structure.length - 1] = structureTop; 
                             }
                             break;
                     case "newline":
@@ -76,7 +78,7 @@ export class ParseHelper extends observable.Observable {
                             paragraph.textWrap = true;
                             paragraph.cssClass = "paragraph";
                             paragraph.formattedText = new FormattedString();
-                            ParseHelper.structure.push(paragraph);
+                            structure.push(paragraph);
                             break;
                     case "href":
                             if(structureTop instanceof Label) {
@@ -97,7 +99,7 @@ export class ParseHelper extends observable.Observable {
                                       url: object.text
                                 };
                                 (<Label>structureTop).hrefObj.push(urlObj);                        
-                                ParseHelper.structure[ParseHelper.structure.length - 1] = structureTop;
+                                structure[structure.length - 1] = structureTop;
                             }
                             break;
                     default:
@@ -106,6 +108,6 @@ export class ParseHelper extends observable.Observable {
                 }
             });
             //return structured ui component
-            return ParseHelper.structure;
+            return structure;
         }
 }
