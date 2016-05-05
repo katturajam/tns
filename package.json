@@ -1,0 +1,16 @@
+{
+	"nativescript": {
+		"id": "org.nativescript.tstextparser",
+		"tns-android": {
+			"version": "1.6.3"
+		}
+	},
+	"dependencies": {
+		"simple-text-parser": "^1.0.0",
+		"tns-core-modules": "1.6.2"
+	},
+	"devDependencies": {
+		"nativescript-dev-typescript": "^0.3.0",
+		"typescript": "^1.8.10"
+	}
+}

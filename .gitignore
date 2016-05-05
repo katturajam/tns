@@ -1,0 +1,10 @@
+# Ignore the platforms
+platforms/*
+
+# Ignore the .idea, node_modules, submodules and libs
+#.idea/
+node_modules*
+submodules
+lib
+
+
