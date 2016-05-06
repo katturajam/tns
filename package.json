@@ -2,12 +2,12 @@
 	"nativescript": {
 		"id": "org.nativescript.tnsparralaxdemo",
 		"tns-android": {
-			"version": "1.7.1"
+			"version": "1.6.3"
 		}
 	},
 	"dependencies": {
 		"nativescript-parallax": "1.1.0",
-		"tns-core-modules": "^1.7.1"
+		"tns-core-modules": "1.6.2"
 	},
 	"devDependencies": {
 		"nativescript-dev-typescript": "^0.3.1",
