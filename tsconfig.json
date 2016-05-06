@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "removeComments": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "declaration": true
+    },
+    "files": [
+      "tnsparallax-demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
+      "tnsparallax-demo/node_modules/nativescript-parallax.ts",
+      "tnsparallax-demo/node_modules/nativescript-parallax.d.ts",
+      "tnsparallax-demo/node_modules/utilities.d.ts",
+      "tnsparallax-demo/node_modules/utilities.ts"
+    ],
+    "compileOnSave": true
+}
