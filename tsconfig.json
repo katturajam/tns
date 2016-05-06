@@ -6,8 +6,16 @@
         "experimentalDecorators": true,
         "noEmitHelpers": true
     },
+    "files": [
+      "node_modules/tns-core-modules/tns-core-modules.d.ts",
+      "node_modules/nativescript-parallax/nativescript-parallax.ts",
+      "node_modules/nativescript-parallax/nativescript-parallax.d.ts",
+      "node_modules/nativescript-parallax/utilities.d.ts",
+      "node_modules/nativescript-parallax/utilities.ts"
+    ],
     "exclude": [
         "node_modules",
         "platforms"
-    ]
+    ],
+    "compileOnSave": true
 }
