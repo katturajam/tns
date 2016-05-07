@@ -22,10 +22,12 @@ export class ParseHelper extends observable.Observable {
                       return { type: "newline", text: null, tag: clean_tag }; 
                 });
 
-                parser.addRule(/\www.[\S]+/m, function(tag, clean_tag) {
-                        var text = tag.substr(1);   
+                parser.addRule(/\b(w{3}\.{1}\w|http\:\/{2}\w|https\:\/{2}\w)[\S]+/im, function(tag, clean_tag) {
+                        var text = tag.substr(0).toLowerCase().trim();
+                       
                         return { type: "href", text: text, tag: clean_tag };
                 });
+
         }
 
         public loadText(content: string) {
@@ -68,7 +70,7 @@ export class ParseHelper extends observable.Observable {
 
                             if(structureTop instanceof Label) {
                                 let span = new Span();
-                                span.text = object.text;
+                                span.text = object.text.trim();
                                 (<Label>structureTop).formattedText.spans.push(span);
                                 structure[structure.length - 1] = structureTop; 
                             }
@@ -84,7 +86,7 @@ export class ParseHelper extends observable.Observable {
                             if(structureTop instanceof Label) {
                                 var linkStartPosition = (<Label>structureTop).formattedText.toString().length;
                                 let span = new Span();
-                                span.text = object.text;
+                                span.text = " " + object.text +" ";
                                 span.underline = 1;
                                 span.foregroundColor = new Color("#BB1919");
                                 (<Label>structureTop).formattedText.spans.push(span);

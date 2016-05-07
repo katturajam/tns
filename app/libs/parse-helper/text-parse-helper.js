@@ -19,8 +19,8 @@ var ParseHelper = (function (_super) {
         parser.addRule(/(\n|\r\n)+/m, function (tag, clean_tag) {
             return { type: "newline", text: null, tag: clean_tag };
         });
-        parser.addRule(/\www.[\S]+/m, function (tag, clean_tag) {
-            var text = tag.substr(1);
+        parser.addRule(/\b(w{3}\.{1}\w|http\:\/{2}\w|https\:\/{2}\w)[\S]+/im, function (tag, clean_tag) {
+            var text = tag.substr(0).toLowerCase().trim();
             return { type: "href", text: text, tag: clean_tag };
         });
     };
@@ -65,7 +65,7 @@ var ParseHelper = (function (_super) {
                         return;
                     if (structureTop instanceof label_1.Label) {
                         var span = new span_1.Span();
-                        span.text = object.text;
+                        span.text = object.text.trim();
                         structureTop.formattedText.spans.push(span);
                         structure[structure.length - 1] = structureTop;
                     }
@@ -81,7 +81,7 @@ var ParseHelper = (function (_super) {
                     if (structureTop instanceof label_1.Label) {
                         var linkStartPosition = structureTop.formattedText.toString().length;
                         var span = new span_1.Span();
-                        span.text = object.text;
+                        span.text = " " + object.text + " ";
                         span.underline = 1;
                         span.foregroundColor = new color_1.Color("#BB1919");
                         structureTop.formattedText.spans.push(span);
