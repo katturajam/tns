@@ -1,6 +1,7 @@
 "use strict";
 var stack_layout_1 = require("ui/layouts/stack-layout");
 var label_1 = require("ui/label");
+var image_1 = require("ui/image");
 var gestures = require("ui/gestures");
 var gestureHelper = require("./libs/gesture-helper/gesture-helper");
 var text_parse_helper_1 = require("./libs/parse-helper/text-parse-helper");
@@ -20,6 +21,12 @@ function navigatingTo(args) {
     viewComponent.forEach(function (object, i) {
         if (viewComponent[i] instanceof label_1.Label) {
             viewComponent[i].on(gestures.GestureTypes.tap, myTap);
+            if (i == 0) {
+                var img = new image_1.Image();
+                img.height = '150';
+                img.src = 'http://www.intrawallpaper.com/static/images/1250654-for-laptop-nature.jpg';
+                stacklayout.addChild(img);
+            }
             stacklayout.addChild(viewComponent[i]);
         }
     });

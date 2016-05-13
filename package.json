@@ -3,6 +3,9 @@
 		"id": "org.nativescript.tstextparser",
 		"tns-android": {
 			"version": "1.6.3"
+		},
+		"tns-ios": {
+			"version": "1.7.0"
 		}
 	},
 	"dependencies": {

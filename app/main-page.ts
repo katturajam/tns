@@ -3,6 +3,7 @@ import {Page} from "ui/page";
 import {ScrollView} from "ui/scroll-view"; 
 import {StackLayout} from "ui/layouts/stack-layout";
 import { Label } from  "ui/label";
+import { Image } from  "ui/image";
 import gestures = require("ui/gestures");
 import gestureHelper = require("./libs/gesture-helper/gesture-helper");
 import {ParseHelper} from "./libs/parse-helper/text-parse-helper"; 
@@ -22,7 +23,13 @@ export function navigatingTo(args: EventData) {
     let viewComponent: Array<any> = TextParser.doParse();      
     viewComponent.forEach(function(object,i){
           if(viewComponent[i] instanceof Label) {    
-              <Label>viewComponent[i].on(gestures.GestureTypes.tap, myTap);       
+              <Label>viewComponent[i].on(gestures.GestureTypes.tap, myTap);
+              if(i == 0) {
+                  let img = new Image();
+                  img.height = '150';
+                  img.src = 'http://www.intrawallpaper.com/static/images/1250654-for-laptop-nature.jpg';
+                  stacklayout.addChild(img);
+              }       
               stacklayout.addChild(<Label>viewComponent[i]);
           }
     });
